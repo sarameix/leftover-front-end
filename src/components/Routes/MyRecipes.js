@@ -40,6 +40,9 @@ const MyRecipes = () => {
                 <div className='line'></div>
                 <h1>My Recipes</h1>
                 <div className='line'></div>
+                <button className='add-new-button' value="/Recipes/New" onClick={handleRouteSwitch}>
+                    + Add New Recipes
+                </button>
             </main>
             <Footer />
         </>
