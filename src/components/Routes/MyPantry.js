@@ -76,11 +76,11 @@ const MyPantry = (props) => {
                 </div>
                 {
                     showAdd ?
-                        <div className='overlay'>
-                            <div className='add-form-container'>
-                                <div className='add-form-header'>
+                        <div className='popup-overlay'>
+                            <div className='popup-container'>
+                                <div className='popup-header'>
                                     <h3>Create New Pantry Item</h3>
-                                    <button onClick={toggleCreateAlert} className='close-add-button'>
+                                    <button onClick={toggleCreateAlert} className='close-popup-button'>
                                         <svg
                                             width="24"
                                             height="24"
@@ -96,7 +96,7 @@ const MyPantry = (props) => {
                                     </button>
                                 </div>
                                 <form className='add-form' onSubmit={handleAddFormSubmit} >
-                                    <input className='add-submit-button' value='Add Drink' type="submit" />
+                                    <input className='popup-submit-button' value='Add Drink' type="submit" />
                                 </form>
                             </div>
                         </div>

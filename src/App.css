@@ -408,3 +408,70 @@ span {
 .pantry-buttons-container > button:hover {
   background-color: rgb(232, 135, 0);
 }
+
+/***********/
+/* Pop-Ups */
+/***********/
+
+.popup-overlay {
+  background-color: rgba(121, 121, 121, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+}
+
+.popup-container {
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255);
+  text-align: left;
+  width: 525px;
+  padding: 1.35em 1.6em 1.5em 1.6em;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  z-index: 6;
+}
+
+.popup-header {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-popup-button {
+  background-color: rgb(180, 180, 180);
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-style: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.close-popup-button:hover {
+  background-color: rgb(160, 160, 160);
+}
+
+.popup-submit-button {
+  font-size: .9em;
+  text-transform: uppercase;
+  background-color: rgb(255, 110, 0);
+  color: white;
+  padding: .5em .75em;
+  border-style: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-submit-button:hover {
+  background-color: rgb(232, 135, 0);
+}
