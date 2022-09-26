@@ -1,38 +1,305 @@
-.App {
+
+
+/****************/
+/* Import Fonts */
+/****************/
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto:wght@300;500&display=swap');
+
+/*****************/
+/* Standard Tags */
+/*****************/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+main {
+  padding: 0 1em;
+  padding-top: 140px;
+  min-height: calc(91.5vh - 50px);
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5em;
   text-align: center;
+  margin: .25em 0 .25em 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h3, h5 {
+  font-weight: 300;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/****************/
+/* Landing Page */
+/****************/
+
+.home-master-container {
+  background-color: gray;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex: none;
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100vw;
+  height: 100vh;
+}
+
+.vertical-center {
+  width: 750px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-65%);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.vertical-center > * {
   color: white;
+  width: 90vw;
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.home-header {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  font-size: 500%;
+  text-align: center;
+  text-shadow: 0px 0px 15px black;
+  margin-bottom: .2em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home-descrip-container {
+  display: flex;
+  justify-content: center;
+  height: max-content;
+  margin: 2px 0 32px 0;
+}
+
+.home-descrip-container > * {
+  font-size: 200%;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 0px 0px 15px black;
+  margin: 0;
+}
+
+.home-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-nav-button {
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  background-color: rgb(232, 100, 0);
+  font-size: 135%;
+  font-weight: 400;
+  text-transform: uppercase;
+  width: 165px;
+  height: 20%;
+  padding: .3em .85em;
+  border: 1px solid rgb(216, 94, 0);
+  border-radius: .5em;
+  margin: 0 .4em;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.home-nav-button:hover {
+  background-color: rgb(232, 135, 0);
+  border: 1px solid rgb(213, 124, 0);
+}
+
+/**********/
+/* Header */
+/**********/
+
+header {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 95px;
+  box-shadow: -1px 0px 8px 5px rgba(0, 0, 0, 0.4);
+  z-index: 3;
+}
+
+.home-button {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(216, 94, 0);
+  font-weight: 600;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.25em;
+  padding: 0;
+  border: none;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.header-links {
+  display: none;
+  margin-right: 3vw;
+}
+
+.header-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: rgb(232, 100, 0);
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid white;
+  margin-right: 25px;
+  cursor: pointer
+}
+
+.header-hamburger:hover {
+  background-color: rgb(232, 135, 0);
+}
+
+.more {
+  background-color: white;
+  width: 62%;
+  height: 5px;
+  border-radius: 1px;
+  margin: 4px 0
+}
+
+.close1 {
+  width: 72%;
+  height: 5px;
+  background-color: white;
+  position: absolute;
+  border-radius: 5px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.close2 {
+  position: relative;
+  width: 72%;
+  height: 6px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.side-nav-menu {
+  background-color: rgb(232, 100, 0);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  padding: 105px 30px 0 0;
+  z-index: -1 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+
+.side-nav-menu > .header-button {
+  color: white !important;
+  font-size: 1.9em !important;
+  text-decoration: none;
+  padding: 0;
+  margin: .65em 0 .65em 0;
+}
+
+.side-nav-menu > .header-button:hover {
+  color: rgb(255, 224, 180) !important;
+}
+
+.hamburger-divider {
+  background-color: white;
+  width: 76%;
+  height: 1px;
+  margin: 0;
+}
+
+.header-button {
+  background-color: rgba(255, 255, 255, 0);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  border: none;
+  cursor: pointer;
+}
+
+.header-button:hover {
+  color: rgb(255, 241, 222) !important;
+}
+
+/**********/
+/* Footer */
+/**********/
+
+footer {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 60px;
+  padding: .75em 0;
+  margin: 52px 0 0 0;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px -4px 5px rgba(0, 0, 0, 0.2);
+}
+
+span {
+  color: rgb(216, 94, 0);
+  font-size: 1.55em;
+  font-family: 'Dancing Script', cursive;
+  margin: 0 .05em 0 .2em;
+}
+
+/*********/
+/* Pages */
+/*********/
+
+.line {
+  background-color: black;
+  height: 1px;
+  width: 100%;
 }

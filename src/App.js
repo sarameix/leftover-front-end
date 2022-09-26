@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+/////////////
+// IMPORTS //
+/////////////
 
-function App() {
+import './App.css';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+////////////////
+// COMPONENTS //
+////////////////
+
+import Home from './components/Routes/Home';
+import MyPantry from './components/Routes/MyPantry';
+import NewPantry from './components/Routes/NewPantry';
+import MyRecipes from './components/Routes/MyRecipes';
+import NewRecipe from './components/Routes/NewRecipes';
+
+//////////////////
+// APP FUNCTION //
+//////////////////
+
+const App = () => {
+
+  ////////////
+  // STATES //
+  ////////////
+
+  ////////////////////////
+  // BODY HTML ELEMENTS //
+  ////////////////////////
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route path="" element={ <Home /> } />
+            <Route path="Pantry" element={ <MyPantry /> } />
+            <Route path="Pantry/New" element={ <NewPantry /> } />
+            <Route path="Recipes" element={ <MyRecipes /> } />
+            <Route path="Recipes/New" element={ <NewRecipe /> } />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
-}
+};
+
+////////////////
+// EXPORT APP //
+////////////////
 
 export default App;
