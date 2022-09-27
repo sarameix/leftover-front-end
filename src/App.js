@@ -72,6 +72,14 @@ const App = () => {
     });
   };
 
+  // PUT Request and Update Pantry State
+  const handlePantryUpdate = (editItem) => {
+    axios.put(`${API_URL}/api/ingredients/` + editItem.id, editItem)
+    .then((response) => {
+      getPantry();
+    })
+  }
+
   // *** RECIPES *** //
 
   // GET Request and Update Recipes State
@@ -98,11 +106,19 @@ const App = () => {
 
   // DELETE Request and Update Recipe State
   const handleRecipeDelete = (deletedRecipe) => {
-    axios.delete(`${API_URL}/api/recipes` + deletedRecipe.id)
+    axios.delete(`${API_URL}/api/recipes/` + deletedRecipe.id)
     .then((response) => {
       setRecipes(recipes.filter(recipe => recipe.id !== deletedRecipe.id))
     });
   };
+
+  // PUT Request and Update Recipe State
+  const handleRecipeUpdate = (editRecipe) => {
+    axios.put(`${API_URL}/api/recipes/` + editRecipe.id, editRecipe)
+    .then((response) => {
+      getRecipes();
+    })
+  }
 
   ////////////////
   // USE EFFECT //
@@ -128,7 +144,8 @@ const App = () => {
                 props={{
                   pantry: pantry,
                   handlePantryCreate: handlePantryCreate,
-                  handlePantryDelete: handlePantryDelete
+                  handlePantryDelete: handlePantryDelete,
+                  handlePantryUpdate: handlePantryUpdate
                 }}
               />
             } />

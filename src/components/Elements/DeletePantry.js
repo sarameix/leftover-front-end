@@ -3,7 +3,6 @@
 /////////////
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 /////////////////////
 // FOOTER FUNCTION //
@@ -28,7 +27,7 @@ const DeletePantry = (props) => {
 
     return (
         <div className='popup-overlay'>
-            <div className='popup-container edit-container'>
+            <div className='popup-container delete-container'>
                 <div className='popup-header'>
                     <h3></h3>
                     <button onClick={props.toggleDeleteAlert} className='close-popup-button'>
@@ -47,7 +46,7 @@ const DeletePantry = (props) => {
                     </button>
                 </div>
                 <h3 className='delete-form-header'>Are you sure you want to delete <span className='delete-item-name'>{props.pantryItem.name}</span> from your pantry?</h3>
-                <form className='popup-form edit-form' onSubmit={handleDelete} >
+                <form className='popup-form delete-form' onSubmit={handleDelete} >
                     <input className='popup-submit-button' value='Yes' type="submit" />
                     <button onClick={props.toggleDeleteAlert}  className='popup-submit-button'>No</button>
                 </form>

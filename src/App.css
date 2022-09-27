@@ -416,9 +416,8 @@ footer {
 
 .popup-overlay {
   background-color: rgba(121, 121, 121, 0.5);
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed; 
+  top: 0; right: 0; bottom: 0; left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -432,7 +431,7 @@ footer {
   background-color: rgba(255, 255, 255);
   text-align: left;
   width: 525px;
-  height: 334px;
+  height: 342px;
   padding: 1.35em 1.6em 1.5em 1.6em;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
@@ -440,8 +439,12 @@ footer {
   overflow-y: auto;
 }
 
-.edit-container {
+.delete-container {
   height: 215px;
+}
+
+.edit-container {
+  height: 332px;
 }
 
 .popup-header {
@@ -518,6 +521,7 @@ footer {
 .popup-input {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  font-size: 1em;
   width: 97%;
   height: 26px;
   padding: .1em 0 .1em .35em;
@@ -566,6 +570,17 @@ footer {
   cursor: pointer;
 }
 
+.edit-name {
+  width: 97%;
+  height: 32px;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+.edit-name > h3 {
+  font-size: 1.3em;
+}
+
 .popup-submit-button {
   font-size: .9em;
   font-weight: 400;
@@ -582,12 +597,12 @@ footer {
   background-color: rgb(232, 135, 0);
 }
 
-.edit-form {
+.delete-form {
   display: flex;
   justify-content: center;
 }
 
-.edit-form > * {
+.delete-form > * {
   width: 50px;
   margin: .5em 1em;
 }

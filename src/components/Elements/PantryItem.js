@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 ////////////////
 
 import DeletePantry from './DeletePantry';
+import EditPantry from './EditPantry';
 
 ////////////////////////
 // MY PANTRY FUNCTION //
@@ -16,11 +17,26 @@ import DeletePantry from './DeletePantry';
 
 const PantryItem = (props) => {
 
+    ////////////
+    // STATES //
+    ////////////
+
+    const [showDelete, setShowDelete] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
+
     //////////////////////
     // HELPER FUNCTIONS //
     //////////////////////
 
+    // Toggle Delete Alert
+    const toggleDeleteAlert = () => {
+        setShowDelete(!showDelete);
+    }
 
+    // Toggle Edit Alert
+    const toggleEditAlert = () => {
+        setShowEdit(!showEdit);
+    }
 
     ////////////////////////
     // BODY HTML ELEMENTS //
@@ -29,8 +45,14 @@ const PantryItem = (props) => {
     return (
         <div className='pantry-item-container'>
             {
-                props.showDelete ? 
-                    <DeletePantry pantryItem={props.pantryItem} handlePantryDelete={props.handlePantryDelete} showDelete={props.showDelete} toggleDeleteAlert={props.toggleDeleteAlert} />
+                showDelete ? 
+                    <DeletePantry pantryItem={props.pantryItem} handlePantryDelete={props.handlePantryDelete} showDelete={showDelete} toggleDeleteAlert={toggleDeleteAlert} />
+                :
+                    null
+            }
+            {
+                showEdit ?
+                    <EditPantry pantryItem={props.pantryItem} handlePantryUpdate={props.handlePantryUpdate} showEdit={showEdit} toggleEditAlert={toggleEditAlert} />
                 :
                     null
             }
@@ -40,8 +62,8 @@ const PantryItem = (props) => {
                 <p>Quantity: {props.pantryItem.quantity}</p>
                 <p>Age: {props.pantryItem.age}</p>
                 <div className='pantry-buttons-container'>
-                    <button>Edit</button>
-                    <button onClick={props.toggleDeleteAlert}>Delete</button>
+                    <button onClick={toggleEditAlert}>Edit</button>
+                    <button onClick={toggleDeleteAlert}>Delete</button>
                 </div>
             </div>
         </div>
