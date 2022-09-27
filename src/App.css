@@ -431,14 +431,17 @@ span {
   background-color: rgba(255, 255, 255);
   text-align: left;
   width: 525px;
+  height: 356px;
   padding: 1.35em 1.6em 1.5em 1.6em;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
   z-index: 6;
+  overflow-y: auto;
 }
 
 .popup-header {
   height: 30px;
+  margin-bottom: .6em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -459,6 +462,33 @@ span {
 
 .close-popup-button:hover {
   background-color: rgb(160, 160, 160);
+}
+
+.popup-form > * {
+  margin: .6em 0;
+}
+
+.popup-input {
+  width: 97%;
+  height: 22px;
+  padding: .1em 0 .1em .5em;
+  margin-bottom: 1em;
+}
+
+.food-option-button {
+  background-color: rgb(238, 238, 238);
+  text-align: left;
+  font-size: 1em;
+  width: 100%;
+  padding: .25em .5em;
+  border: none;
+  border-radius: 2px;
+  margin: .25em 0;
+  cursor: pointer;
+}
+
+.food-option-button:hover {
+  background-color: rgb(222, 222, 222);
 }
 
 .popup-submit-button {
