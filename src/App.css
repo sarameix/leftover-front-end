@@ -293,7 +293,7 @@ footer {
   box-shadow: 0px -4px 5px rgba(0, 0, 0, 0.2);
 }
 
-span {
+.footer-script {
   color: rgb(245, 106, 0);
   font-size: 1.65em;
   font-family: 'Dancing Script', cursive;
@@ -440,12 +440,27 @@ span {
   overflow-y: auto;
 }
 
+.edit-container {
+  height: 215px;
+}
+
 .popup-header {
   height: 30px;
   margin-bottom: .6em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.delete-form-header {
+  font-size: 1.4em;
+  text-align: center;
+  width: 85%;
+  margin: .8em auto .75em auto;
+}
+
+.delete-item-name {
+  font-weight: 400;
 }
 
 .close-popup-button {
@@ -553,6 +568,7 @@ span {
 
 .popup-submit-button {
   font-size: .9em;
+  font-weight: 400;
   text-transform: uppercase;
   background-color: rgb(255, 110, 0);
   color: white;
@@ -564,4 +580,14 @@ span {
 
 .popup-submit-button:hover {
   background-color: rgb(232, 135, 0);
+}
+
+.edit-form {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-form > * {
+  width: 50px;
+  margin: .5em 1em;
 }

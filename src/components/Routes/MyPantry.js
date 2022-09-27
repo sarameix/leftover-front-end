@@ -146,7 +146,7 @@ const MyPantry = (props) => {
                     {
                         pantry.map((pantryItem) => {
                             return (
-                                <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} />
+                                <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} showDelete={showDelete} toggleDeleteAlert={toggleDeleteAlert}/>
                             )
                         })
                     }

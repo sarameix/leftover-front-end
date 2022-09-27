@@ -66,7 +66,7 @@ const App = () => {
 
   // DELETE Request and Update Pantry State
   const handlePantryDelete = (deletedItem) => {
-    axios.delete(`${API_URL}/api/ingredients` + deletedItem.id)
+    axios.delete(`${API_URL}/api/ingredients/` + deletedItem.id)
     .then((response) => {
       setPantry(pantry.filter(item => item.id !== deletedItem.id))
     });
