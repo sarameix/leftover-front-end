@@ -47,6 +47,7 @@ const MyPantry = (props) => {
     ////////////
 
     const [showAdd, setShowAdd] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
     const [newPantry, setNewPantry] = useState(emptyPantryItem);
     const [nameQuery, setNameQuery] = useState("");
     const [nameOptions, setNameOptions] = useState([]);
@@ -67,6 +68,11 @@ const MyPantry = (props) => {
         setNameOptions([]);
     }
 
+    // Toggle Delete Alert
+    const toggleDeleteAlert = () => {
+        setShowDelete(!showDelete);
+    }
+
     // Function to Handle Change in Add Form
     const handleChange = (event) => {
         setNewPantry({ ...newPantry, [event.target.name]: event.target.value });
@@ -80,7 +86,7 @@ const MyPantry = (props) => {
     // Handle Submitting Add Alert
     const handleAddFormSubmit = (event) => {
         event.preventDefault();
-        console.log(newPantry);
+        props.props.handlePantryCreate(newPantry);
         toggleCreateAlert();
         setNewPantry(emptyPantryItem);
         setNameQuery("");
@@ -100,7 +106,6 @@ const MyPantry = (props) => {
         .then(
             (response) => {
                 setNameOptions(response.data.hints);
-                console.log(response.data.hints)
             },
             (error) => console.error(error)
         )
@@ -141,7 +146,7 @@ const MyPantry = (props) => {
                     {
                         pantry.map((pantryItem) => {
                             return (
-                                <PantryItem key={pantryItem.id} pantryItem={pantryItem} />
+                                <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} />
                             )
                         })
                     }

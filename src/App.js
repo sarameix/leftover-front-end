@@ -40,6 +40,8 @@ const App = () => {
   // AXIOS FUNCTIONS //
   /////////////////////
 
+  // *** PANTRY *** //
+
   // GET Request and Update Pantry State
   const getPantry = () => {
     axios.get(`${API_URL}/api/ingredients`)
@@ -54,6 +56,24 @@ const App = () => {
       })
   };
 
+  // POST Request and Update Pantry State
+  const handlePantryCreate = (newItem) => {
+    axios.post(`${API_URL}/api/ingredients`, newItem)
+    .then((response) => {
+      setPantry([...pantry, response.data]);
+    });
+  };
+
+  // DELETE Request and Update Pantry State
+  const handlePantryDelete = (deletedItem) => {
+    axios.delete(`${API_URL}/api/ingredients` + deletedItem.id)
+    .then((response) => {
+      setPantry(pantry.filter(item => item.id !== deletedItem.id))
+    });
+  };
+
+  // *** RECIPES *** //
+
   // GET Request and Update Recipes State
   const getRecipes = () => {
     axios.get(`${API_URL}/api/recipes`)
@@ -66,6 +86,22 @@ const App = () => {
       .catch((error) => {
         console.error(error);
       })
+  };
+
+  // POST Request and Update Recipe State
+  const handleRecipeCreate = (newRecipe) => {
+    axios.post(`${API_URL}/api/recipes`, newRecipe)
+    .then((response) => {
+      setRecipes([...recipes, response.data]);
+    });
+  };
+
+  // DELETE Request and Update Recipe State
+  const handleRecipeDelete = (deletedRecipe) => {
+    axios.delete(`${API_URL}/api/recipes` + deletedRecipe.id)
+    .then((response) => {
+      setRecipes(recipes.filter(recipe => recipe.id !== deletedRecipe.id))
+    });
   };
 
   ////////////////
@@ -87,7 +123,15 @@ const App = () => {
         <Routes>
           <Route path="/">
             <Route path="" element={ <Home /> } />
-            <Route path="Pantry" element={ <MyPantry props={{pantry: pantry}} /> } />
+            <Route path="Pantry" element={ 
+              <MyPantry 
+                props={{
+                  pantry: pantry,
+                  handlePantryCreate: handlePantryCreate,
+                  handlePantryDelete: handlePantryDelete
+                }}
+              />
+            } />
             <Route path="Pantry/New" element={ <NewPantry /> } />
             <Route path="Recipes" element={ <MyRecipes /> } />
             <Route path="Recipes/New" element={ <NewRecipe /> } />
