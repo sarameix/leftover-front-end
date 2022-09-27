@@ -116,6 +116,13 @@ const MyPantry = (props) => {
         setNameOptions([]);
     }
 
+    // Function to Handle Clicking Food Option
+    const handleFoodOptionRemove = () => {
+        setNewPantry({ ...newPantry, ["name"]: "", ["image"]: "" });
+        setNameQuery("");
+        setNameOptions([]);
+    }
+
     ////////////////////////
     // BODY HTML ELEMENTS //
     ////////////////////////
@@ -141,7 +148,7 @@ const MyPantry = (props) => {
                 </div>
                 {
                     showAdd ?
-                        <AddPantry toggleCreateAlert={toggleCreateAlert} handleAddFormSubmit={handleAddFormSubmit} handleNameChange={handleNameChange} handleEdamamRequest={handleEdamamRequest} handleChange={handleChange} nameOptions={nameOptions} handleFoodOptionClick={handleFoodOptionClick} newPantry={newPantry} />
+                        <AddPantry toggleCreateAlert={toggleCreateAlert} handleAddFormSubmit={handleAddFormSubmit} handleNameChange={handleNameChange} handleEdamamRequest={handleEdamamRequest} handleChange={handleChange} nameOptions={nameOptions} handleFoodOptionClick={handleFoodOptionClick} handleFoodOptionRemove={handleFoodOptionRemove} newPantry={newPantry} />
                     :
                         null
                 }
