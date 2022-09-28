@@ -11,12 +11,17 @@ import { useNavigate } from "react-router-dom";
 
 import Header from '../Elements/Header';
 import Footer from '../Elements/Footer';
+import Recipe from '../Elements/Recipe';
 
 /////////////////////////
 // MY RECIPES FUNCTION //
 /////////////////////////
 
-const MyRecipes = () => {
+const MyRecipes = (props) => {
+
+    ///////////////
+    // VARIABLES //
+    ///////////////
 
     // Create Navigation Functionality
     const navigate = useNavigate();
@@ -25,9 +30,18 @@ const MyRecipes = () => {
     // HELPER FUNCTIONS //
     //////////////////////
 
+    // Route Switch Function
     const handleRouteSwitch = (event) => {
         navigate(event.target.value);
     }
+
+    ////////////////
+    // USE EFFECT //
+    ////////////////
+
+    useEffect(() => {
+        props.props.getRecipes();
+    }, [props.props]);
 
     ////////////////////////
     // BODY HTML ELEMENTS //
@@ -43,6 +57,15 @@ const MyRecipes = () => {
                 <button className='add-new-button' value="/Recipes/New" onClick={handleRouteSwitch}>
                     + Add New Recipes
                 </button>
+                <div className='recipes-container'>
+                    {
+                        props.props.recipes.map((recipe) => {
+                            return (
+                                <Recipe key={recipe.id} recipe={recipe} handleRecipeDelete={props.props.handleRecipeDelete} />
+                            )
+                        })
+                    }
+                </div>
             </main>
             <Footer />
         </>

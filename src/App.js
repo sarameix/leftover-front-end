@@ -13,7 +13,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './components/Routes/Home';
 import MyPantry from './components/Routes/MyPantry';
-import NewPantry from './components/Routes/NewPantry';
 import MyRecipes from './components/Routes/MyRecipes';
 import NewRecipe from './components/Routes/NewRecipes';
 
@@ -112,14 +111,6 @@ const App = () => {
     });
   };
 
-  // PUT Request and Update Recipe State
-  const handleRecipeUpdate = (editRecipe) => {
-    axios.put(`${API_URL}/api/recipes/` + editRecipe.id, editRecipe)
-    .then((response) => {
-      getRecipes();
-    })
-  }
-
   ////////////////
   // USE EFFECT //
   ////////////////
@@ -143,15 +134,32 @@ const App = () => {
               <MyPantry 
                 props={{
                   pantry: pantry,
+                  getPantry: getPantry,
                   handlePantryCreate: handlePantryCreate,
                   handlePantryDelete: handlePantryDelete,
                   handlePantryUpdate: handlePantryUpdate
                 }}
               />
             } />
-            <Route path="Pantry/New" element={ <NewPantry /> } />
-            <Route path="Recipes" element={ <MyRecipes /> } />
-            <Route path="Recipes/New" element={ <NewRecipe /> } />
+            <Route path="Recipes" element={
+              <MyRecipes
+                props={{
+                  recipes: recipes,
+                  getRecipes: getRecipes,
+                  handleRecipeDelete: handleRecipeDelete
+                }}
+              />
+            } />
+            <Route path="Recipes/New" element={
+              <NewRecipe
+                props={{
+                  pantry: pantry,
+                  recipes: recipes,
+                  getRecipes: getRecipes,
+                  handleRecipeCreate: handleRecipeCreate
+                }}
+              />
+            } />
           </Route>
         </Routes>
       </BrowserRouter>

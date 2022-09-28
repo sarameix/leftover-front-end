@@ -62,7 +62,7 @@ const AddPantry = (props) => {
                                 {
                                     props.nameOptions.map((option, index) => {
                                         return (
-                                            <button onClick={() => props.handleFoodOptionClick(option.food.label, option.food.image)} className='food-option-button' key={index}>{option.food.label}</button>
+                                            <button onClick={() => props.handleFoodOptionClick(option.food.foodId, option.food.label, option.food.image)} className='food-option-button' key={index}>{option.food.label}</button>
                                         )
                                     })
                                 }

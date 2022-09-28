@@ -3,7 +3,6 @@
 /////////////
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 ////////////////
@@ -26,16 +25,15 @@ const MyPantry = (props) => {
     ///////////////////
 
     const EDAMAM_URL = process.env.REACT_APP_EDAMAM_URL;
-    const EDAMAM_ID = process.env.REACT_APP_EDAMAM_ID;
-    const EDAMAM_KEY = process.env.REACT_APP_EDAMAM_KEY;
+    const EDAMAM_ID = process.env.REACT_APP_EDAMAM_INGR_ID;
+    const EDAMAM_KEY = process.env.REACT_APP_EDAMAM_INGR_KEY;
 
     ///////////////
     // VARIABLES //
     ///////////////
 
-    const pantry = props.props.pantry;
-    const navigate = useNavigate();
     let emptyPantryItem = {
+        foodID: "",
         name: "",
         image: "",
         age: "",
@@ -54,11 +52,6 @@ const MyPantry = (props) => {
     //////////////////////
     // HELPER FUNCTIONS //
     //////////////////////
-
-    // Switch Routes
-    const handleRouteSwitch = (event) => {
-        navigate(event.target.value);
-    }
 
     // Toggle Create Alert
     const toggleCreateAlert = () => {
@@ -109,18 +102,26 @@ const MyPantry = (props) => {
     }
 
     // Function to Handle Clicking Food Option
-    const handleFoodOptionClick = (foodName, foodImage) => {
-        setNewPantry({ ...newPantry, ["name"]: foodName, ["image"]: foodImage });
+    const handleFoodOptionClick = (foodID, foodName, foodImage) => {
+        setNewPantry({ ...newPantry, ["foodID"]: foodID, ["name"]: foodName, ["image"]: foodImage });
         setNameQuery("");
         setNameOptions([]);
     }
 
     // Function to Handle Clicking Food Option
     const handleFoodOptionRemove = () => {
-        setNewPantry({ ...newPantry, ["name"]: "", ["image"]: "" });
+        setNewPantry({ ...newPantry, ["foodID"]: "", ["name"]: "", ["image"]: "" });
         setNameQuery("");
         setNameOptions([]);
     }
+
+    ////////////////
+    // USE EFFECT //
+    ////////////////
+
+    useEffect(() => {
+        props.props.getPantry();
+    }, [props.props]);
 
     ////////////////////////
     // BODY HTML ELEMENTS //
@@ -138,7 +139,7 @@ const MyPantry = (props) => {
                 </button>
                 <div className='pantry-items-container'>
                     {
-                        pantry.map((pantryItem) => {
+                        props.props.pantry.map((pantryItem) => {
                             return (
                                 <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} handlePantryUpdate={props.props.handlePantryUpdate} />
                             )
