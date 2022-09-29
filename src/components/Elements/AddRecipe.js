@@ -55,7 +55,7 @@ const AddRecipe = (props) => {
             remainingIngredients: props.recipe.remainingIngredients,
             link: props.recipe.url
         };
-        console.log(newRecipe);
+        props.handleRecipeCreate(newRecipe);
         toggleIsClicked();
     }
 

@@ -178,7 +178,7 @@ const NewRecipes = (props) => {
                         recipeOptions.map((recipe, i) => {
                             return (
                                 recipe.recipe.matchedIngredients.length > 0 ?
-                                    <AddRecipe key={i} recipe={recipe.recipe} />
+                                    <AddRecipe key={i} handleRecipeCreate={props.props.handleRecipeCreate} recipe={recipe.recipe} />
                                 :
                                     null
                                 )
