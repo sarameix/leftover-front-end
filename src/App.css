@@ -432,6 +432,7 @@ footer {
 }
 
 .recipe-container {
+  position: relative;
   background-color: rgb(253, 234, 210);
   display: flex;
   flex-direction: column;
@@ -490,7 +491,7 @@ footer {
   margin: .5em 0;
 }
 
-.recipe-buttons-container > button {
+.recipe-buttons-container > button, .add-recipe-buttons-container > button {
   background-color: rgb(255, 110, 0);
   color: white;
   font-weight: 400;
@@ -503,7 +504,7 @@ footer {
   cursor: pointer;
 }
 
-.recipe-buttons-container > button:hover {
+.recipe-buttons-container > button:hover, .add-recipe-buttons-container > button:hover {
   background-color: rgb(232, 135, 0);
 }
 
@@ -516,6 +517,7 @@ footer {
   margin: 3em auto 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, 450px);
+  /* grid-auto-rows: 1fr; */
   justify-content: center;
   grid-gap: 50px 75px;
 }
@@ -528,6 +530,46 @@ footer {
   border-bottom-left-radius: .5em;
   border-bottom-right-radius: .5em;
   box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.15);
+}
+
+.add-recipe-description {
+  background-color: rgb(253, 234, 210);
+  text-align: center;
+  width: 100%;
+  padding: .5em 1em;
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: .5em;
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.add-recipe-p-container > p {
+  text-align: left;
+  font-size: 1.2em;
+  margin: .25em 0;
+}
+
+.ingredients-p {
+  text-transform: capitalize;
+}
+
+.add-recipe-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1em 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  bottom: 0;
+}
+
+.clicked-recipe-button {
+  background-color: rgb(242, 164, 54) !important;
+  cursor: auto !important;
 }
 
 /***********/

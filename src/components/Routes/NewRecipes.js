@@ -84,13 +84,63 @@ const NewRecipes = (props) => {
         return queries;
     }
 
+    // Add Ingredient Properties
+    const addIngredientProps = (recipe, pantry) => {
+        // Initialize Ingredient Arrays
+        const matchedIngredients = [];
+        const remainingIngredients = [];
+
+        // Loop Through Ingredients
+        for (let i = 0; i < recipe.recipe.ingredients.length; i++) {
+
+            // Declare Variables
+            let isInRecipe = false;
+            let name = recipe.recipe.ingredients[i].food;
+
+            // Loop Through Pantry to Determine if in Recipe
+            for (let j = 0; j < pantry.length; j++) {
+                if (recipe.recipe.ingredients[i].foodId == pantry[j].foodID) {
+                    isInRecipe = true;
+                    name = pantry[j].name;
+                }
+            }
+
+            // Put in Matches or Remaining Based on Boolean
+            if (isInRecipe) {
+                matchedIngredients.push(name);
+            } else {
+                remainingIngredients.push(name);
+            }
+        }
+    
+        // Add Properties to Recipe Object
+        recipe.recipe.matchedIngredients = matchedIngredients;
+        recipe.recipe.remainingIngredients = remainingIngredients;
+
+        // Return Modified Object
+        return recipe;
+    }
+
+    // Remove Bad Recipes from Array
+    const removeDuds = (recipes) => {
+        for (let i = 0; i < recipes.length; i++) {
+            if (recipes[i].recipe.totalTime === 0) {
+                recipes.splice(i, 1);
+            }
+        }
+        return recipes;
+    }
+
     // Handle Request to Edamam API
     const handleEdamamRequest = (apiURL) => {
         // Make Axios Request
         axios.get(apiURL)
         .then(
             (response) => {
-                setRecipeOptions(response.data.hits);
+                for (let i = 0; i < response.data.hits.length; i++) {
+                    response.data.hits[i] = addIngredientProps(response.data.hits[i], props.props.pantry);
+                }
+                setRecipeOptions(removeDuds(response.data.hits));
             },
             (error) => console.error(error)
         )
@@ -127,8 +177,11 @@ const NewRecipes = (props) => {
                     {
                         recipeOptions.map((recipe, i) => {
                             return (
-                                <AddRecipe key={i} recipe={recipe.recipe} />
-                            )
+                                recipe.recipe.matchedIngredients.length > 0 ?
+                                    <AddRecipe key={i} recipe={recipe.recipe} />
+                                :
+                                    null
+                                )
                         })
                     }
                 </div>
