@@ -12,6 +12,7 @@ import axios from 'axios';
 
 import Header from '../Elements/Header';
 import Footer from '../Elements/Footer';
+import AddRecipe from '../Elements/AddRecipe';
 
 //////////////////////////
 // NEW RECIPES FUNCTION //
@@ -48,7 +49,6 @@ const NewRecipes = (props) => {
 
     const [newRecipe, setNewRecipe] = useState(emptyRecipe);
     const [recipeOptions, setRecipeOptions] = useState([]);
-    
 
     //////////////////////
     // HELPER FUNCTIONS //
@@ -85,13 +85,7 @@ const NewRecipes = (props) => {
     }
 
     // Handle Request to Edamam API
-    const handleEdamamRequest = () => {
-        // Get Name Queries
-        const nameQueries = getNameQueries(props.props.pantry);
-
-        // Put Together API URL
-        let apiURL = EDAMAM_URL + "api/recipes/v2?type=public&q=" + nameQueries + "&app_id=" + EDAMAM_ID + "&app_key=" + EDAMAM_KEY;
-
+    const handleEdamamRequest = (apiURL) => {
         // Make Axios Request
         axios.get(apiURL)
         .then(
@@ -110,7 +104,12 @@ const NewRecipes = (props) => {
     ////////////////
 
     useEffect(() => {
-        handleEdamamRequest();
+        // Get Name Queries on Load
+        const nameQueries = getNameQueries(props.props.pantry);
+
+        // Make API Call on Load
+        handleEdamamRequest(EDAMAM_URL + "api/recipes/v2?type=public&q=" + nameQueries + "&app_id=" + EDAMAM_ID + "&app_key=" + EDAMAM_KEY);
+        
     }, [props.props]);
 
     ////////////////////////
@@ -124,6 +123,15 @@ const NewRecipes = (props) => {
                 <div className='line'></div>
                 <h1>Add New Recipes</h1>
                 <div className='line'></div>
+                <div className='add-recipes-container'>
+                    {
+                        recipeOptions.map((recipe, i) => {
+                            return (
+                                <AddRecipe key={i} recipe={recipe.recipe} />
+                            )
+                        })
+                    }
+                </div>
             </main>
             <Footer />
         </>
