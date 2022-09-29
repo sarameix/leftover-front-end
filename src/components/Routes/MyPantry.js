@@ -70,10 +70,41 @@ const MyPantry = (props) => {
         setNameQuery(event.target.value);
     }
 
+    // Update All Recipes When Ingredient Added
+    const updateRecipes = (newPantry) => {
+        // Store Recipes in Variable
+        const newRecipes = props.props.recipes;
+
+        // Loop Through Recipes Array
+        for (let i = 0; i < newRecipes.length; i++) {
+            // Declare Variables for Matching
+            let isMatch = false;
+            let targetIndex = -1;
+
+            // If Match, Store True and Target Index
+            for (let j = 0; j < newRecipes[i].remainingIngredients.length; j++) {
+                console.log(newRecipes[i].remainingIngredients[j].toLowerCase() + " and " + newPantry.name.toLowerCase());
+                if (newRecipes[i].remainingIngredients[j].toLowerCase() === newPantry.name.toLowerCase()) {
+                    console.log("Match!")
+                    isMatch = true;
+                    targetIndex = j;
+                }
+            }
+
+            // Update Recipe Ingredients if Match
+            if (isMatch) {
+                newRecipes[i].remainingIngredients.splice(targetIndex, 1);
+                newRecipes[i].matchedIngredients.push(newPantry.name);
+                props.props.handleRecipeUpdate(newRecipes[i]);
+            }
+        }
+    }
+
     // Handle Submitting Add Alert
     const handleAddFormSubmit = (event) => {
         event.preventDefault();
         props.props.handlePantryCreate(newPantry);
+        updateRecipes(newPantry);
         toggleCreateAlert();
         setNewPantry(emptyPantryItem);
         setNameQuery("");
@@ -149,7 +180,7 @@ const MyPantry = (props) => {
                 </div>
                 {
                     showAdd ?
-                        <AddPantry toggleCreateAlert={toggleCreateAlert} handleAddFormSubmit={handleAddFormSubmit} handleNameChange={handleNameChange} handleEdamamRequest={handleEdamamRequest} handleChange={handleChange} nameOptions={nameOptions} handleFoodOptionClick={handleFoodOptionClick} handleFoodOptionRemove={handleFoodOptionRemove} newPantry={newPantry} recipes={props.props.recipes} handleRecipeCreate={props.props.handleRecipeCreate} />
+                        <AddPantry toggleCreateAlert={toggleCreateAlert} handleAddFormSubmit={handleAddFormSubmit} handleNameChange={handleNameChange} handleEdamamRequest={handleEdamamRequest} handleChange={handleChange} nameOptions={nameOptions} handleFoodOptionClick={handleFoodOptionClick} handleFoodOptionRemove={handleFoodOptionRemove} newPantry={newPantry} />
                     :
                         null
                 }

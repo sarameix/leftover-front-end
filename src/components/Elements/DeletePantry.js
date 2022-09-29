@@ -4,9 +4,9 @@
 
 import { useState, useEffect } from 'react';
 
-/////////////////////
-// FOOTER FUNCTION //
-/////////////////////
+//////////////
+// FUNCTION //
+//////////////
 
 const DeletePantry = (props) => {
 

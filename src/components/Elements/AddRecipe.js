@@ -4,9 +4,9 @@
 
 import { useState, useEffect } from 'react';
 
-////////////////////////
-// MY PANTRY FUNCTION //
-////////////////////////
+/////////////////////////
+// ADD RECIPE FUNCTION //
+/////////////////////////
 
 const AddRecipe = (props) => {
 

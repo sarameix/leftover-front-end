@@ -11,9 +11,9 @@ import { useState, useEffect } from 'react';
 import DeletePantry from './DeletePantry';
 import EditPantry from './EditPantry';
 
-////////////////////////
-// MY PANTRY FUNCTION //
-////////////////////////
+//////////////
+// FUNCTION //
+//////////////
 
 const PantryItem = (props) => {
 

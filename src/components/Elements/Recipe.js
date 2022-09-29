@@ -10,9 +10,9 @@ import { useState, useEffect } from 'react';
 
 import DeleteRecipe from './DeleteRecipe';
 
-////////////////////////
-// MY PANTRY FUNCTION //
-////////////////////////
+//////////////
+// FUNCTION //
+//////////////
 
 const Recipe = (props) => {
 
