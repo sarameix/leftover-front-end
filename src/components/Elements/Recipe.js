@@ -71,7 +71,7 @@ const Recipe = (props) => {
             <h3>{props.recipe.name}</h3>
             <div className='add-recipe-description'>
                 <div className='add-recipe-p-container'>
-                    <p><span className='bold'>Time:</span> {props.recipe.totalTime} Minutes</p>
+                    <p><span className='bold'>Time:</span> {props.recipe.time} Minutes</p>
                     <p className='ingredients-p'><span className='bold'>Matching Ingredients: </span>{matchIngredientString}</p>
                     <p className='ingredients-p'><span className='bold'>Remaining Ingredients: </span>{remainIngredientString}</p>
                 </div>

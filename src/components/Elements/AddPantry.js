@@ -15,12 +15,7 @@ const AddPantry = (props) => {
     // HELPER FUNCTIONS //
     //////////////////////
 
-    // Update All Recipes When Ingredient Added
-    const updateRecipes = () => {
-        for (let i = 0; i < props.recipes; i++) {
-            
-        }
-    }
+
 
     ////////////////////////
     // BODY HTML ELEMENTS //
