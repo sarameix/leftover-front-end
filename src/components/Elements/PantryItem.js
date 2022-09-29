@@ -46,7 +46,7 @@ const PantryItem = (props) => {
         <div className='pantry-item-container'>
             {
                 showDelete ? 
-                    <DeletePantry pantryItem={props.pantryItem} handlePantryDelete={props.handlePantryDelete} showDelete={showDelete} toggleDeleteAlert={toggleDeleteAlert} />
+                    <DeletePantry pantryItem={props.pantryItem} handlePantryDelete={props.handlePantryDelete} showDelete={showDelete} toggleDeleteAlert={toggleDeleteAlert} recipes={props.recipes} handleRecipeUpdate={props.handleRecipeUpdate} />
                 :
                     null
             }

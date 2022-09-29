@@ -14,9 +14,37 @@ const DeletePantry = (props) => {
     // HELPER FUNCTIONS //
     //////////////////////
 
+    // Update All Recipes When Ingredient Added
+    const updateRecipesOnDelete = (deletedPantry) => {
+        // Loop Through Recipes Array
+        for (let i = 0; i < props.recipes.length; i++) {
+            // Declare Variables for Matching
+            let isMatch = false;
+            let targetIndex = -1;
+
+            // If Match, Store True and Target Index
+            for (let j = 0; j < props.recipes[i].matchedIngredients.length; j++) {
+                console.log(props.recipes[i].matchedIngredients[j].toLowerCase() + " and " + deletedPantry.name.toLowerCase());
+                if (props.recipes[i].matchedIngredients[j].toLowerCase() === deletedPantry.name.toLowerCase()) {
+                    console.log("Match!")
+                    isMatch = true;
+                    targetIndex = j;
+                }
+            }
+
+            // Update Recipe Ingredients if Match
+            if (isMatch) {
+                props.recipes[i].matchedIngredients.splice(targetIndex, 1);
+                props.recipes[i].remainingIngredients.push(deletedPantry.name);
+                props.handleRecipeUpdate(props.recipes[i]);
+            }
+        }
+    }
+
     // Function to Handle Page When Deleting Item
     const handleDelete = (event) => {
         event.preventDefault();
+        updateRecipesOnDelete(props.pantryItem);
         props.handlePantryDelete(props.pantryItem);
         props.toggleDeleteAlert();
     }

@@ -71,7 +71,7 @@ const MyPantry = (props) => {
     }
 
     // Update All Recipes When Ingredient Added
-    const updateRecipes = (newPantry) => {
+    const updateRecipesOnAdd = (newPantry) => {
         // Store Recipes in Variable
         const newRecipes = props.props.recipes;
 
@@ -83,9 +83,7 @@ const MyPantry = (props) => {
 
             // If Match, Store True and Target Index
             for (let j = 0; j < newRecipes[i].remainingIngredients.length; j++) {
-                console.log(newRecipes[i].remainingIngredients[j].toLowerCase() + " and " + newPantry.name.toLowerCase());
                 if (newRecipes[i].remainingIngredients[j].toLowerCase() === newPantry.name.toLowerCase()) {
-                    console.log("Match!")
                     isMatch = true;
                     targetIndex = j;
                 }
@@ -104,7 +102,7 @@ const MyPantry = (props) => {
     const handleAddFormSubmit = (event) => {
         event.preventDefault();
         props.props.handlePantryCreate(newPantry);
-        updateRecipes(newPantry);
+        updateRecipesOnAdd(newPantry);
         toggleCreateAlert();
         setNewPantry(emptyPantryItem);
         setNameQuery("");
@@ -173,7 +171,7 @@ const MyPantry = (props) => {
                     {
                         props.props.pantry.map((pantryItem) => {
                             return (
-                                <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} handlePantryUpdate={props.props.handlePantryUpdate} />
+                                <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} handlePantryUpdate={props.props.handlePantryUpdate} recipes={props.props.recipes} handleRecipeUpdate={props.props.handleRecipeUpdate} />
                             )
                         })
                     }

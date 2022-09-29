@@ -334,7 +334,7 @@ footer {
   grid-template-columns: repeat(auto-fill, 300px);
   justify-content: center;
   align-items: center;
-  grid-gap: 75px;
+  grid-gap: 50px 75px;
 }
 
 .pantry-item-container {
