@@ -93,6 +93,7 @@ const MyPantry = (props) => {
         .then(
             (response) => {
                 setNameOptions(response.data.hints);
+                console.log(response.data.hints)
             },
             (error) => console.error(error)
         )
@@ -148,7 +149,7 @@ const MyPantry = (props) => {
                 </div>
                 {
                     showAdd ?
-                        <AddPantry toggleCreateAlert={toggleCreateAlert} handleAddFormSubmit={handleAddFormSubmit} handleNameChange={handleNameChange} handleEdamamRequest={handleEdamamRequest} handleChange={handleChange} nameOptions={nameOptions} handleFoodOptionClick={handleFoodOptionClick} handleFoodOptionRemove={handleFoodOptionRemove} newPantry={newPantry} />
+                        <AddPantry toggleCreateAlert={toggleCreateAlert} handleAddFormSubmit={handleAddFormSubmit} handleNameChange={handleNameChange} handleEdamamRequest={handleEdamamRequest} handleChange={handleChange} nameOptions={nameOptions} handleFoodOptionClick={handleFoodOptionClick} handleFoodOptionRemove={handleFoodOptionRemove} newPantry={newPantry} recipes={props.props.recipes} handleRecipeCreate={props.props.handleRecipeCreate} />
                     :
                         null
                 }

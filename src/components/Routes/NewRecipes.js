@@ -49,6 +49,7 @@ const NewRecipes = (props) => {
 
     const [newRecipe, setNewRecipe] = useState(emptyRecipe);
     const [recipeOptions, setRecipeOptions] = useState([]);
+    const [nextPage, setNextPage] = useState("");
 
     //////////////////////
     // HELPER FUNCTIONS //
@@ -137,10 +138,52 @@ const NewRecipes = (props) => {
         axios.get(apiURL)
         .then(
             (response) => {
+                // Add Ingredient Properties
                 for (let i = 0; i < response.data.hits.length; i++) {
                     response.data.hits[i] = addIngredientProps(response.data.hits[i], props.props.pantry);
                 }
+
+                // Set Recipe Options
                 setRecipeOptions(removeDuds(response.data.hits));
+
+                // Set Next Page
+                if (response.data._links.next) {
+                    setNextPage(response.data._links.next.href);
+                } else {
+                    setNextPage("");
+                }
+            },
+            (error) => console.error(error)
+        )
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+
+    // Handle Page Change
+    const handleMoreRequest = (apiURL) => {
+        // Make Axios Request
+        axios.get(apiURL)
+        .then(
+            (response) => {
+                // Store Data in New Variable
+                let data = response.data.hits;
+
+                // Add Ingredient Properties
+                for (let i = 0; i < data.length; i++) {
+                    data[i] = addIngredientProps(data[i], props.props.pantry);
+                }
+
+                // Set Recipe Options
+                // setRecipeOptions([...recipeOptions, removeDuds(data)]);
+                console.log(data);
+
+                // Set Next Page
+                if (response.data._links.next) {
+                    setNextPage(response.data._links.next.href);
+                } else {
+                    setNextPage("");
+                }
             },
             (error) => console.error(error)
         )
@@ -183,6 +226,14 @@ const NewRecipes = (props) => {
                                     null
                                 )
                         })
+                    }
+                </div>
+                <div className='switch-page-buttons-container'>
+                    {
+                        nextPage ?
+                            <button onClick={() => {handleMoreRequest(nextPage)}}>Show More</button>
+                        :
+                            null
                     }
                 </div>
             </main>

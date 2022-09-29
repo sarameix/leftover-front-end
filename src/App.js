@@ -111,6 +111,14 @@ const App = () => {
     });
   };
 
+  // PUT Request and Update Recipe State
+  const handleRecipeUpdate = (editRecipe) => {
+    axios.put(`${API_URL}/api/recipes/` + editRecipe.id, editRecipe)
+    .then((response) => {
+      getRecipes();
+    })
+  }
+
   ////////////////
   // USE EFFECT //
   ////////////////
@@ -134,10 +142,12 @@ const App = () => {
               <MyPantry 
                 props={{
                   pantry: pantry,
+                  recipes: recipes,
                   getPantry: getPantry,
                   handlePantryCreate: handlePantryCreate,
                   handlePantryDelete: handlePantryDelete,
-                  handlePantryUpdate: handlePantryUpdate
+                  handlePantryUpdate: handlePantryUpdate,
+                  handleRecipeUpdate: handleRecipeUpdate
                 }}
               />
             } />
