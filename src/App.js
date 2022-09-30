@@ -143,11 +143,12 @@ const App = () => {
                 props={{
                   pantry: pantry,
                   recipes: recipes,
+                  setPantry: setPantry,
                   getPantry: getPantry,
                   handlePantryCreate: handlePantryCreate,
                   handlePantryDelete: handlePantryDelete,
                   handlePantryUpdate: handlePantryUpdate,
-                  handleRecipeUpdate: handleRecipeUpdate
+                  handleRecipeUpdate: handleRecipeUpdate,
                 }}
               />
             } />

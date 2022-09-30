@@ -164,9 +164,11 @@ const MyPantry = (props) => {
                 <div className='line'></div>
                 <h1>My Pantry Items</h1>
                 <div className='line'></div>
-                <button className='add-new-button' value="/Pantry/New" onClick={toggleCreateAlert}>
-                    + Add New Items
-                </button>
+                <div className='page-buttons-container'>
+                    <button className='add-new-button' value="/Pantry/New" onClick={toggleCreateAlert}>
+                        + Add New Items
+                    </button>
+                </div>
                 <div className='pantry-items-container'>
                     {
                         props.props.pantry.map((pantryItem) => {

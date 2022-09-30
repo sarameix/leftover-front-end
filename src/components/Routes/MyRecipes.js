@@ -54,9 +54,11 @@ const MyRecipes = (props) => {
                 <div className='line'></div>
                 <h1>My Recipes</h1>
                 <div className='line'></div>
-                <button className='add-new-button' value="/Recipes/New" onClick={handleRouteSwitch}>
-                    + Add New Recipes
-                </button>
+                <div className='page-buttons-container'>
+                    <button className='add-new-button' value="/Recipes/New" onClick={handleRouteSwitch}>
+                        + Add New Recipes
+                    </button>
+                </div>
                 <div className='recipes-container'>
                     {
                         props.props.recipes.map((recipe) => {
