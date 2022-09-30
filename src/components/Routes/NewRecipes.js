@@ -5,6 +5,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { ColorRing } from 'react-loader-spinner';
 
 ////////////////
 // COMPONENTS //
@@ -49,6 +50,7 @@ const NewRecipes = (props) => {
 
     const [newRecipe, setNewRecipe] = useState(emptyRecipe);
     const [recipeOptions, setRecipeOptions] = useState([]);
+    const [isFetchingNewRecipes, setIsFetchingNewRecipes] = useState(false);
 
     //////////////////////
     // HELPER FUNCTIONS //
@@ -133,6 +135,9 @@ const NewRecipes = (props) => {
 
     // Handle Request to Edamam API
     const handleEdamamRequest = (apiURL) => {
+        // Show Spinner
+        setIsFetchingNewRecipes(true);
+
         // Make Axios Request
         axios.get(apiURL)
         .then(
@@ -144,6 +149,9 @@ const NewRecipes = (props) => {
 
                 // Set Recipe Options
                 setRecipeOptions(removeDuds(response.data.hits));
+
+                // Hide Spinner
+                setIsFetchingNewRecipes(false); 
             },
             (error) => console.error(error)
         )
@@ -176,18 +184,32 @@ const NewRecipes = (props) => {
                 <div className='line'></div>
                 <h1>Add New Recipes</h1>
                 <div className='line'></div>
-                <div className='add-recipes-container'>
-                    {
-                        recipeOptions.map((recipe, i) => {
-                            return (
-                                recipe.recipe.matchedIngredients.length > 0 ?
-                                    <AddRecipe key={i} handleRecipeCreate={props.props.handleRecipeCreate} recipe={recipe.recipe} />
-                                :
-                                    null
-                                )
-                        })
-                    }
-                </div>
+                {
+                    isFetchingNewRecipes ? 
+                        <div className='spinner'>
+                            <ColorRing
+                                visible={true}
+                                height='200'
+                                width='200'
+                                ariaLabel='blocks-loading'
+                                wrapperStyle={{}}
+                                wrapperClass='blocks-wrapper'
+                                colors={['#E6A00B', '#F0900C', '#D85E00', '#F04D0C', '#E62A0B']} />
+                        </div>
+                    :
+                        <div className='add-recipes-container'>
+                            {
+                                recipeOptions.map((recipe, i) => {
+                                    return (
+                                        recipe.recipe.matchedIngredients.length > 0 ?
+                                            <AddRecipe key={i} handleRecipeCreate={props.props.handleRecipeCreate} recipe={recipe.recipe} />
+                                        :
+                                            null
+                                        )
+                                })
+                            }
+                        </div>
+                }
             </main>
             <Footer />
         </>

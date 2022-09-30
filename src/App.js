@@ -34,6 +34,8 @@ const App = () => {
 
   const [pantry, setPantry] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [isFetchingPantry, setIsFetchingPantry] = useState(false);
+  const [isFetchingRecipes, setIsFetchingRecipes] = useState(false);  
 
   /////////////////////
   // AXIOS FUNCTIONS //
@@ -43,9 +45,11 @@ const App = () => {
 
   // GET Request and Update Pantry State
   const getPantry = () => {
+    setIsFetchingPantry(true);
     axios.get(`${API_URL}/api/ingredients`)
       .then(
         (response) => {
+          setIsFetchingPantry(false);
           setPantry(response.data);
         },
         (error) => console.error(error)
@@ -83,10 +87,12 @@ const App = () => {
 
   // GET Request and Update Recipes State
   const getRecipes = () => {
+    setIsFetchingRecipes(true);
     axios.get(`${API_URL}/api/recipes`)
       .then(
         (response) => {
           setRecipes(response.data);
+          setIsFetchingRecipes(false);
         },
         (error) => console.error(error)
       )
@@ -149,6 +155,7 @@ const App = () => {
                   handlePantryDelete: handlePantryDelete,
                   handlePantryUpdate: handlePantryUpdate,
                   handleRecipeUpdate: handleRecipeUpdate,
+                  isFetchingPantry: isFetchingPantry
                 }}
               />
             } />
@@ -157,7 +164,8 @@ const App = () => {
                 props={{
                   recipes: recipes,
                   getRecipes: getRecipes,
-                  handleRecipeDelete: handleRecipeDelete
+                  handleRecipeDelete: handleRecipeDelete,
+                  isFetchingRecipes: isFetchingRecipes
                 }}
               />
             } />

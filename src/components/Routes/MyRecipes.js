@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { ColorRing } from 'react-loader-spinner';
 
 ////////////////
 // COMPONENTS //
@@ -35,14 +36,6 @@ const MyRecipes = (props) => {
         navigate(event.target.value);
     }
 
-    ////////////////
-    // USE EFFECT //
-    ////////////////
-
-    useEffect(() => {
-        props.props.getRecipes();
-    }, [props.props]);
-
     ////////////////////////
     // BODY HTML ELEMENTS //
     ////////////////////////
@@ -59,15 +52,29 @@ const MyRecipes = (props) => {
                         + Add New Recipes
                     </button>
                 </div>
-                <div className='recipes-container'>
-                    {
-                        props.props.recipes.map((recipe) => {
-                            return (
-                                <Recipe key={recipe.id} recipe={recipe} handleRecipeDelete={props.props.handleRecipeDelete} />
-                            )
-                        })
-                    }
-                </div>
+                {
+                    props.props.isFetchingRecipes ?
+                        <div className='spinner'>
+                            <ColorRing
+                                visible={true}
+                                height='200'
+                                width='200'
+                                ariaLabel='blocks-loading'
+                                wrapperStyle={{}}
+                                wrapperClass='blocks-wrapper'
+                                colors={['#E6A00B', '#F0900C', '#D85E00', '#F04D0C', '#E62A0B']} />
+                        </div>
+                    :
+                        <div className='recipes-container'>
+                            {
+                                props.props.recipes.map((recipe) => {
+                                    return (
+                                        <Recipe key={recipe.id} recipe={recipe} handleRecipeDelete={props.props.handleRecipeDelete} />
+                                    )
+                                })
+                            }
+                        </div>
+                }
             </main>
             <Footer />
         </>

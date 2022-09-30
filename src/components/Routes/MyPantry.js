@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ColorRing } from 'react-loader-spinner';
 
 ////////////////
 // COMPONENTS //
@@ -145,14 +146,6 @@ const MyPantry = (props) => {
         setNameOptions([]);
     }
 
-    ////////////////
-    // USE EFFECT //
-    ////////////////
-
-    useEffect(() => {
-        props.props.getPantry();
-    }, [props.props]);
-
     ////////////////////////
     // BODY HTML ELEMENTS //
     ////////////////////////
@@ -169,15 +162,30 @@ const MyPantry = (props) => {
                         + Add New Items
                     </button>
                 </div>
-                <div className='pantry-items-container'>
-                    {
-                        props.props.pantry.map((pantryItem) => {
-                            return (
-                                <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} handlePantryUpdate={props.props.handlePantryUpdate} recipes={props.props.recipes} handleRecipeUpdate={props.props.handleRecipeUpdate} />
-                            )
-                        })
-                    }
-                </div>
+                {
+                    props.props.IsFetchingPantry ? 
+                        <div className='spinner'>
+                            <ColorRing
+                                visible={true}
+                                height='200'
+                                width='200'
+                                ariaLabel='blocks-loading'
+                                wrapperStyle={{}}
+                                wrapperClass='blocks-wrapper'
+                                colors={['#E6A00B', '#F0900C', '#D85E00', '#F04D0C', '#E62A0B']} />
+                        </div>
+                    :
+                        <div className='pantry-items-container'>
+                            {
+                                props.props.pantry.map((pantryItem) => {
+                                    return (
+                                        <PantryItem key={pantryItem.id} pantryItem={pantryItem} handlePantryDelete={props.props.handlePantryDelete} handlePantryUpdate={props.props.handlePantryUpdate} recipes={props.props.recipes} handleRecipeUpdate={props.props.handleRecipeUpdate} />
+                                    )
+                                })
+                            }
+                        </div>
+                }
+
                 {
                     showAdd ?
                         <AddPantry toggleCreateAlert={toggleCreateAlert} handleAddFormSubmit={handleAddFormSubmit} handleNameChange={handleNameChange} handleEdamamRequest={handleEdamamRequest} handleChange={handleChange} nameOptions={nameOptions} handleFoodOptionClick={handleFoodOptionClick} handleFoodOptionRemove={handleFoodOptionRemove} newPantry={newPantry} />
