@@ -101,7 +101,7 @@ const NewRecipes = (props) => {
 
             // Loop Through Pantry to Determine if in Recipe
             for (let j = 0; j < pantry.length; j++) {
-                if (recipe.recipe.ingredients[i].foodId == pantry[j].foodID) {
+                if ((recipe.recipe.ingredients[i].foodId === pantry[j].foodID)) {
                     isInRecipe = true;
                     name = pantry[j].name;
                 }
