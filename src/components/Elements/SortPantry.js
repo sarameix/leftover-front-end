@@ -15,7 +15,6 @@ const SortPantry = (props) => {
     // VARIABLES  //
     ////////////////
 
-
     //////////////////////
     // HELPER FUNCTIONS //
     //////////////////////
@@ -30,7 +29,7 @@ const SortPantry = (props) => {
                 <div className="input-group-prepend">
                     <label className="input-group-text sort-label" htmlFor="inputGroupSelect01">Sort By</label>
                 </div>
-                <select className="custom-select" id="inputGroupSelect01" name="sortBy" defaultValue="mostRecent" onChange={props.handleSortChange}>
+                <select className="custom-select" id="inputGroupSelect01" name="sortBy" defaultValue="mostRecent">
                     <option value="mostRecent">Most Recent</option>
                     <option value="alphabetical">Alphabetical</option>
                     <option value="age">Age</option>
