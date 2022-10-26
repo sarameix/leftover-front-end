@@ -69,15 +69,15 @@ const App = () => {
 
   // DELETE Request and Update Pantry State
   const handlePantryDelete = (deletedItem) => {
-    axios.delete(`${API_URL}/api/ingredients/` + deletedItem.id)
+    axios.delete(`${API_URL}/api/ingredients/` + deletedItem._id)
     .then((response) => {
-      setPantry(pantry.filter(item => item.id !== deletedItem.id))
+      setPantry(pantry.filter(item => item._id !== deletedItem._id))
     });
   };
 
   // PUT Request and Update Pantry State
   const handlePantryUpdate = (editItem) => {
-    axios.put(`${API_URL}/api/ingredients/` + editItem.id, editItem)
+    axios.put(`${API_URL}/api/ingredients/` + editItem._id, editItem)
     .then((response) => {
       getPantry();
     })
@@ -111,15 +111,15 @@ const App = () => {
 
   // DELETE Request and Update Recipe State
   const handleRecipeDelete = (deletedRecipe) => {
-    axios.delete(`${API_URL}/api/recipes/` + deletedRecipe.id)
+    axios.delete(`${API_URL}/api/recipes/` + deletedRecipe._id)
     .then((response) => {
-      setRecipes(recipes.filter(recipe => recipe.id !== deletedRecipe.id))
+      setRecipes(recipes.filter(recipe => recipe._id !== deletedRecipe._id))
     });
   };
 
   // PUT Request and Update Recipe State
   const handleRecipeUpdate = (editRecipe) => {
-    axios.put(`${API_URL}/api/recipes/` + editRecipe.id, editRecipe)
+    axios.put(`${API_URL}/api/recipes/` + editRecipe._id, editRecipe)
     .then((response) => {
       getRecipes();
     })
